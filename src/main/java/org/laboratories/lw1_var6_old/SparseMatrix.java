@@ -37,7 +37,6 @@ public class SparseMatrix {
 
     public void fillMatrix() {
         int k = 1;
-        Random random = new Random();
         for (int i = 0; i < matrix.length; i++) {
             for (int j = i; j < matrix[i].length - i; j++) {
                 matrix[i][j] = k++;

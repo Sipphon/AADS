@@ -5,7 +5,7 @@ import java.util.Random;
 public class Main {
     public static void main(String[] args) {
         Random rand = new Random();
-        SparseMatrix sm = new SparseMatrix(100);
+        SparseMatrix sm = new SparseMatrix(10);
         sm.fillMatrix();
         sm.printMatrix();
 
