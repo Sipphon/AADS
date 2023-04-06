@@ -9,7 +9,7 @@ public class Main {
 
         Main main = new Main();
 //        main.run();
-         main.run2();
+        main.run2();
     }
 
     public void run() {
@@ -33,11 +33,10 @@ public class Main {
                 System.out.print("Enter keyword: ");
                 keyword = sc.nextLine();
 
-                // Удаление дубликатов из ключа
+
                 keyword = keyword.toLowerCase();
                 keyword = playfairCipher.removeDuplicates(keyword);
 
-                // Генерация матрицы
                 char[][] matrix = playfairCipher.generateMatrix(keyword);
 
                 for (int i = 0; i < matrix.length; i++){
@@ -67,10 +66,9 @@ public class Main {
                 System.out.print("Enter keyword: ");
                 keyword = sc.nextLine();
 
-                // Удаление дубликатов из ключа
                 keyword = playfairCipher.removeDuplicates(keyword);
 
-                // Генерация матрицы
+
                 char[][] matrix = playfairCipher.generateMatrix(keyword);
 
                 for (int i = 0; i < matrix.length; i++){
@@ -86,7 +84,6 @@ public class Main {
                 encryptedPassword = sc.nextLine();
                 encryptedPassword = encryptedPassword.toLowerCase();
 
-                // Расшифровка пароля
                 String decryptedPassword = playfairCipher.decryptPassword(matrix, encryptedPassword);
                 System.out.println("Decrypted password: " + decryptedPassword);
             }
@@ -99,56 +96,30 @@ public class Main {
         Auth auth = new Auth();
 
 
-        System.out.println("Register (1) or Auth (2)");
-        int choice = sc.nextInt();
-        sc.nextLine();
+        System.out.println("Auth");
+        String username;
+        String password;
+        System.out.println("Enter username: ");
+        username = sc.nextLine();
+        System.out.println("Enter password: ");
+        password = sc.nextLine();
 
-        switch (choice) {
+        boolean success = false;
+        try {
 
-            case 1 -> {
-                String username;
-                String password;
-                System.out.println("Enter username: ");
-                username = sc.nextLine();
-                System.out.println("Enter password: ");
-                password = sc.nextLine();
+            success = auth.authUser(username, password);
 
-                try {
+        } catch (AuthenticationException err) {
 
-                    auth.registerUser(username, password);
-                } catch (AuthenticationException err) {
-
-                    System.out.println(err.getMessage());
-                }
-
-            }
-            case 2 -> {
-
-                String username;
-                String password;
-                System.out.println("Enter username: ");
-                username = sc.nextLine();
-                System.out.println("Enter password: ");
-                password = sc.nextLine();
-
-                boolean success = false;
-                try {
-
-                    success = auth.authUser(username, password);
-
-                } catch (AuthenticationException err) {
-
-                    System.out.println(err.getMessage());
-                }
-
-                if (success){
-
-                    System.out.println("Auth success");
-                }
-
-            }
+            System.out.println(err.getMessage());
         }
 
-
+        if (success) {
+            System.out.println("Auth success");
+        }
     }
 }
+
+
+
+
